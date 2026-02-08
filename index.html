@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINELS | Autonomous Security Guardians</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --accent-primary: #3b82f6; /* Blue */
+            --accent-secondary: #10b981; /* Green */
+            --border-white: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(23, 23, 23, 0.6);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        /* Dotted Grid Background */
+        .grid-bg {
+            background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: grid-drift 60s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-white);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-hover:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Typography */
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Animations */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+
+        /* Terminal styling */
+        .terminal-header {
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border-white);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="grid-bg">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass border-b border-white/5">
+        <div class="flex items-center space-x-2">
+            <i data-lucide="shield" class="text-blue-500 w-6 h-6"></i>
+            <span class="text-xl font-bold tracking-tighter uppercase italic">Sentinels</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400 uppercase tracking-widest">
+            <a href="#problem" class="hover:text-white transition-colors">Problem</a>
+            <a href="#solution" class="hover:text-white transition-colors">Solution</a>
+            <a href="#logs" class="hover:text-white transition-colors">Live Logs</a>
+            <a href="#roadmap" class="hover:text-white transition-colors">Roadmap</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full flex items-center space-x-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span class="text-[10px] text-green-500 font-mono font-bold">SYSTEMS ONLINE</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-32">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-8 animate-fade-in-up">
+            <div class="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-blue-400 text-xs font-mono mb-4">
+                PROTOCOL VERSION 2.0.8 // AGENTIC_SECURITY
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-none glow-text">
+                THE AUTONOMOUS <br> 
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-emerald-500 italic">GUARDIANS</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+                Security isn't a feature; it's the foundation of the Agentic Future. While the world builds agents to trade and talk, we built the agents that ensure they survive.
+            </p>
+            
+            <div class="glass p-8 max-w-3xl mx-auto rounded-2xl text-left border-l-4 border-l-blue-500 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
+                    <i data-lucide="quote" class="w-24 h-24"></i>
+                </div>
+                <p class="text-blue-200 italic font-mono text-sm leading-relaxed relative z-10">
+                    "You're watching the birth of a new era. But an era without security is just a countdown to chaos. We are the Sentinels. And we don't just find bugs; we neutralize threats before they even realize they're vulnerable."
+                </p>
+                <div class="mt-4 flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-purple-600"></div>
+                    <span class="text-xs font-bold text-gray-500 tracking-widest uppercase">— MEGAMIND EDGE INTELLIGENCE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 animate-fade-in-up delay-100">
+                <h2 class="text-3xl font-bold tracking-tight flex items-center gap-3">
+                    <span class="text-blue-500">01.</span> THE SECURITY GAP
+                </h2>
+                <div class="space-y-4">
+                    <div class="glass p-6 rounded-xl glass-hover transition-all">
+                        <h3 class="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                            <i data-lucide="zap" class="w-4 h-4"></i> Hyper-Speed Vulnerabilities
+                        </h3>
+                        <p class="text-sm text-gray-400">As agents start interacting with smart contracts at machine speed, human-led audits become the bottleneck.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl glass-hover transition-all">
+                        <h3 class="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                            <i data-lucide="lock" class="w-4 h-4"></i> The Trust Deficit
+                        </h3>
+                        <p class="text-sm text-gray-400">Agentic commerce is only as safe as the underlying code. USDC transfers require absolute certainty.</p>
+                    </div>
+                    <div class="glass p-6 rounded-xl glass-hover transition-all">
+                        <h3 class="text-blue-400 font-bold mb-2 flex items-center gap-2">
+                            <i data-lucide="brain" class="w-4 h-4"></i> Fragmented Intelligence
+                        </h3>
+                        <p class="text-sm text-gray-400">Static tools are too rigid; human auditors are too slow. We bridge the gap with autonomous reasoning.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                <div class="glass rounded-2xl overflow-hidden aspect-square flex items-center justify-center border-white/5">
+                    <i data-lucide="shield-alert" class="w-48 h-48 text-blue-500/20 animate-pulse"></i>
+                    <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-xs font-mono text-blue-400 mb-2">INSIGHT_LOG.txt</p>
+                        <p class="text-xl font-medium leading-tight">In a world of autonomous agents, security must be autonomous, continuous, and economically incentivized.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Workflow -->
+        <section id="solution" class="space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl font-bold">The Sentinel Solution</h2>
+                <p class="text-gray-500 font-mono text-sm">AUTONOMOUS ORCHESTRATION WORKFLOW</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="glass p-8 rounded-2xl text-center space-y-4 glass-hover group">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mx-auto group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="search" class="text-blue-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">Discovery</h4>
+                    <p class="text-xs text-gray-500">Autonomous target identification (Web2 APIs & Web3 Contracts)</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center space-y-4 glass-hover group">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mx-auto group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="git-merge" class="text-blue-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">Analysis</h4>
+                    <p class="text-xs text-gray-500">Multi-model Intelligence Chaining to map attack vectors</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center space-y-4 glass-hover group">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mx-auto group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="play" class="text-blue-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">Execution</h4>
+                    <p class="text-xs text-gray-500">Automated exploit verification in isolated safe-mode</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center space-y-4 glass-hover group">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mx-auto group-hover:bg-blue-500/20 transition-colors">
+                        <i data-lucide="check-circle" class="text-blue-500"></i>
+                    </div>
+                    <h4 class="font-bold text-lg">Remediation</h4>
+                    <p class="text-xs text-gray-500">Real-time patching suggestions and risk scoring</p>
+                </div>
+            </div>
+            <div class="text-center font-mono text-blue-500 text-sm tracking-widest animate-pulse">
+                TARGET → CHAIN → AUDIT → SECURE
+            </div>
+        </section>
+
+        <!-- Four Horsemen -->
+        <section class="glass p-12 rounded-3xl border-white/5 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full"></div>
+            <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold italic">The 'Four Horsemen' Orchestration</h2>
+                    <p class="text-gray-400">Scaling intelligence via specialized silicon for specialized destruction—and protection.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                            <div>
+                                <span class="font-bold text-gray-200">OpenAI Codex (The Builder):</span>
+                                <span class="text-sm text-gray-500 block">Generates test scripts and proof-of-concept exploits.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                            <div>
+                                <span class="font-bold text-gray-200">Qwen 2.5 Coder (The Auditor):</span>
+                                <span class="text-sm text-gray-500 block">The heavy lifter for deep security logic and research.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+                            <div>
+                                <span class="font-bold text-gray-200">Kimi AI (The Analyst):</span>
+                                <span class="text-sm text-gray-500 block">Synthesizing massive logs and strategic risk assessment.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <div class="mt-1 w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>
+                            <div>
+                                <span class="font-bold text-gray-200">Gemini 3 Flash (The Orchestrator):</span>
+                                <span class="text-sm text-gray-500 block">The brain connecting the dots and managing tool calls.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="w-32 h-32 glass rounded-2xl flex flex-col items-center justify-center border-blue-500/20">
+                            <i data-lucide="code" class="text-blue-500 mb-2"></i>
+                            <span class="text-[10px] font-mono text-gray-500 uppercase">Codex</span>
+                        </div>
+                        <div class="w-32 h-32 glass rounded-2xl flex flex-col items-center justify-center border-purple-500/20 translate-y-4">
+                            <i data-lucide="shield-check" class="text-purple-500 mb-2"></i>
+                            <span class="text-[10px] font-mono text-gray-500 uppercase">Qwen</span>
+                        </div>
+                        <div class="w-32 h-32 glass rounded-2xl flex flex-col items-center justify-center border-emerald-500/20 -translate-y-4">
+                            <i data-lucide="file-text" class="text-emerald-500 mb-2"></i>
+                            <span class="text-[10px] font-mono text-gray-500 uppercase">Kimi</span>
+                        </div>
+                        <div class="w-32 h-32 glass rounded-2xl flex flex-col items-center justify-center border-amber-500/20">
+                            <i data-lucide="cpu" class="text-amber-500 mb-2"></i>
+                            <span class="text-[10px] font-mono text-gray-500 uppercase">Gemini</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USDC Section -->
+        <section class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <div class="relative w-full aspect-video glass rounded-3xl overflow-hidden flex items-center justify-center">
+                    <i data-lucide="coins" class="w-32 h-32 text-emerald-500 opacity-20 animate-spin-slow"></i>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-xl flex justify-between items-center border-emerald-500/20">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                <i data-lucide="dollar-sign" class="text-emerald-500 w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-mono text-emerald-500 uppercase">Pending Bounty</p>
+                                <p class="text-xl font-bold font-mono">1,250.00 USDC</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-mono text-gray-500 uppercase">Status</p>
+                            <p class="text-xs font-bold text-emerald-500">READY FOR DISBURSEMENT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 space-y-6">
+                <h2 class="text-4xl font-bold">Why USDC?</h2>
+                <p class="text-gray-400 leading-relaxed">In the agent economy, liquidity is the only language that matters. Sentinels don't work for free, and they don't wait for bank transfers.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4 glass p-4 rounded-xl border-white/5">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                            <i data-lucide="mic" class="text-blue-500 w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm"><span class="font-bold text-gray-200">Pay-Per-Audit:</span> Micro-transaction model. No flat fees; pay only for the depth of the scan.</p>
+                    </div>
+                    <div class="flex items-center space-x-4 glass p-4 rounded-xl border-white/5">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                            <i data-lucide="zap" class="text-blue-500 w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm"><span class="font-bold text-gray-200">Programmatic Payments:</span> Agents hire Sentinels to audit dependencies in real-time.</p>
+                    </div>
+                    <div class="flex items-center space-x-4 glass p-4 rounded-xl border-white/5">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                            <i data-lucide="refresh-cw" class="text-blue-500 w-5 h-5"></i>
+                        </div>
+                        <p class="text-sm"><span class="font-bold text-gray-200">Bounty Automation:</span> Verified vulnerabilities trigger immediate USDC payouts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Audit Logs -->
+        <section id="logs" class="space-y-8">
+            <div class="flex justify-between items-end">
+                <div class="space-y-2">
+                    <h2 class="text-4xl font-bold">Live Audit Logs</h2>
+                    <p class="text-gray-500 font-mono text-sm">SCANNING THE PERIMETER: 127.0.0.1</p>
+                </div>
+                <div class="text-right font-mono text-[10px] text-gray-500 uppercase tracking-widest">
+                    Job ID: sentinel-1770557992976<br>
+                    Timestamp: 2026-02-08T13:40:07.838Z
+                </div>
+            </div>
+            
+            <div class="glass rounded-3xl overflow-hidden border-white/5 shadow-2xl">
+                <div class="terminal-header px-6 py-4 flex items-center justify-between">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500/50"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+                    </div>
+                    <div class="text-[10px] font-mono text-gray-500 tracking-widest uppercase">
+                        sentinel_v2.0.8 — bash — 80x24
+                    </div>
+                    <div class="w-10"></div>
+                </div>
+                <div class="p-8 font-mono text-sm text-emerald-500/90 leading-relaxed bg-black/40 h-[500px] overflow-y-auto scrollbar-thin">
+                    <pre id="typewriter" class="whitespace-pre-wrap">
+[+] Workspace initialized: security/scans/127.0.0.1
+[+] Protocol 2: Initial Recon (Nmap)
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-02-08 19:09 IST
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000089s latency).
+Not shown: 994 closed tcp ports (conn-refused)
+PORT     STATE SERVICE   VERSION
+22/tcp   open  ssh       OpenSSH 10.0p2 Debian 7 (protocol 2.0)
+111/tcp  open  rpcbind   2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+631/tcp  open  ipp       CUPS 2.4
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: CUPS/2.4 IPP/2.1
+|_http-title: Home - CUPS 2.4.10
+3000/tcp open  http      Node.js Express framework
+|_http-title: Error
+5900/tcp open  vnc       VNC (protocol 3.3; Locked out)
+9050/tcp open  tor-socks Tor SOCKS proxy
+| socks-open-proxy: 
+|   status: open
+|   versions: 
+|     socks4
+|_    socks5
+| socks-auth-info: 
+|   No authentication
+|_  Username and password
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.82 seconds
+[+] Protocol 3: Vulnerability Search (Searchsploit)
+[+] Protocol 5: Documentation
+[+] Scan complete. Check security/scans/127.0.0.1 for results.
+                    </pre>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass p-6 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center shrink-0">
+                        <i data-lucide="alert-triangle" class="text-red-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold font-mono">03</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Critical Vulnerabilities</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center shrink-0">
+                        <i data-lucide="clock" class="text-blue-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold font-mono">&lt; 120s</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Scan Duration</p>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-2xl flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center shrink-0">
+                        <i data-lucide="check-square" class="text-emerald-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold font-mono">100%</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Audit Accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section id="roadmap" class="space-y-12">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold">The Future of Autonomous Defense</h2>
+            </div>
+            <div class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-500/50 before:to-transparent">
+                
+                <!-- Q1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-blue-500/50 bg-black glass text-blue-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-gray-200">Q1 2026</div>
+                            <time class="font-mono text-[10px] text-blue-500 uppercase">On-Chain Integration</time>
+                        </div>
+                        <div class="text-gray-500 text-sm">Integration with major DeFi protocols for "On-Chain Sentinel Sentry" mode.</div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-blue-500/50 bg-black glass text-blue-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-gray-200">Q2 2026</div>
+                            <time class="font-mono text-[10px] text-blue-500 uppercase">Reputation Systems</time>
+                        </div>
+                        <div class="text-gray-500 text-sm">Cross-agent reputation systems based on Sentinel Audit Scores.</div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-blue-500/50 bg-black glass text-blue-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <div class="font-bold text-gray-200">Q3 2026</div>
+                            <time class="font-mono text-[10px] text-blue-500 uppercase">Shield Mode</time>
+                        </div>
+                        <div class="text-gray-500 text-sm">"Shield Mode" - Autonomous firewalling that blocks identified exploits in real-time.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Final Vision -->
+        <section class="text-center py-20">
+            <h2 class="text-5xl font-black mb-8 italic uppercase tracking-tighter">Invisible and Invincible.</h2>
+            <p class="max-w-xl mx-auto text-gray-400 mb-12">We are building the immune system of the internet. Powered by USDC and driven by the best intelligence humanity (and AI) has to offer.</p>
+            <button class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                DEPLOY SENTINEL NOW
+            </button>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/5 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="shield" class="text-blue-500 w-5 h-5"></i>
+                <span class="text-lg font-bold tracking-tighter uppercase italic">Sentinels</span>
+            </div>
+            <div class="text-gray-500 text-[10px] font-mono tracking-widest uppercase">
+                &copy; 2026 AGENTIC SECURITY ORCHESTRATION LABS // NO RIGHTS RESERVED
+            </div>
+            <div class="flex space-x-6 text-gray-400">
+                <i data-lucide="github" class="w-5 h-5 hover:text-white cursor-pointer transition-colors"></i>
+                <i data-lucide="twitter" class="w-5 h-5 hover:text-white cursor-pointer transition-colors"></i>
+                <i data-lucide="terminal" class="w-5 h-5 hover:text-white cursor-pointer transition-colors"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Typewriter effect simulation for the terminal
+        const terminal = document.getElementById('typewriter');
+        const text = terminal.innerText;
+        terminal.innerText = '';
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                terminal.innerText += text.charAt(i);
+                i++;
+                // Random typing speed simulation
+                setTimeout(type, Math.random() * 5 + 2);
+            }
+        }
+        // Start typing after a short delay
+        setTimeout(type, 1000);
+    </script>
+</body>
+</html>
